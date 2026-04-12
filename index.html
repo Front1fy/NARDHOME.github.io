@@ -45,7 +45,7 @@ body.dark::after{
     background:rgba(0,0,0,0.55);
 }
 
-/* HEADER + NEON */
+/* HEADER */
 .header{
     height:150px;
     position:relative;
@@ -59,6 +59,61 @@ body.dark::after{
         0 0 25px #ffb300;
 
     overflow:hidden;
+}
+
+/* 🔥 NERD IMAGES (BÖYÜDÜLDÜ) */
+.header .nerd-left,
+.header .nerd-right{
+    position:absolute;
+    top:-10px;
+    width:200px;
+    height:200px;
+    overflow:hidden;
+    z-index:2;
+    pointer-events:none;
+}
+
+.header .nerd-left{
+    left:-30px;
+    transform:rotate(-45deg);
+    animation:dropLeft 0.8s ease-out;
+}
+
+.header .nerd-right{
+    right:-30px;
+    transform:rotate(45deg);
+    animation:dropRight 0.8s ease-out;
+    animation-delay:0.2s;
+}
+
+.header .nerd-left img,
+.header .nerd-right img{
+    width:220%;
+    height:220%;
+    object-fit:cover;
+}
+
+/* 🔥 ANIMATION */
+@keyframes dropLeft{
+    0%{
+        transform:translateY(-200px) rotate(-45deg);
+        opacity:0;
+    }
+    100%{
+        transform:translateY(0) rotate(-45deg);
+        opacity:1;
+    }
+}
+
+@keyframes dropRight{
+    0%{
+        transform:translateY(-200px) rotate(45deg);
+        opacity:0;
+    }
+    100%{
+        transform:translateY(0) rotate(45deg);
+        opacity:1;
+    }
 }
 
 /* MOVING LIGHT */
@@ -170,7 +225,7 @@ body.dark #sun{display:none;}
     text-shadow:0 0 10px #ffcc00, 0 0 25px #ff9900;
 }
 
-/* ⭐ STARS */
+/* STARS */
 .stars{
     display:flex;
     justify-content:center;
@@ -229,15 +284,6 @@ body.dark #sun{display:none;}
     100%{transform:scale(1)}
 }
 
-/* INFO */
-.info-box{
-    max-width:360px;
-    margin:15px auto;
-    padding:15px;
-    border-radius:12px;
-    background:rgba(0,0,0,0.05);
-}
-
 /* FOOTER BOX */
 .footer-box{
     max-width:380px;
@@ -271,6 +317,14 @@ body.dark #sun{display:none;}
 <body class="light">
 
 <div class="header">
+
+    <div class="nerd-left">
+        <img src="f:\55005603-89e1-4c68-876a-52f2c4b85165_removalai_preview.png">
+    </div>
+
+    <div class="nerd-right">
+        <img src="f:\f6428df7-6e56-458f-8009-726e6ecbe702_removalai_preview.png">
+    </div>
 
     <div class="theme-toggle" id="toggle">
         <i class="fas fa-moon" id="moon"></i>
