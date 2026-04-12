@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nard Home - 50 Məhsul</title>
+<title>Nard Home</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -15,20 +15,18 @@
     font-family:Arial;
 }
 
-/* ================= BODY ================= */
+/* BODY */
 body{
     background:url("img/Gemini_Generated_Image_u88131u88131u881.png") center/cover no-repeat fixed;
     color:#fff;
-    transition:.4s;
 }
 
 body::before{
     content:"";
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,0.45);
+    background:rgba(0,0,0,0.5);
     z-index:-1;
-    transition:.4s;
 }
 
 /* DARK MODE */
@@ -36,76 +34,46 @@ body.dark::before{
     background:rgba(0,0,0,0.75);
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 .header{
     height:170px;
     position:relative;
-    overflow:hidden;
-    border-bottom-left-radius:60px;
-    border-bottom-right-radius:60px;
 }
 
-.header-img{
-    position:absolute;
-    inset:0;
-}
-
-.header-img img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-.header::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:rgba(0,0,0,0.25);
-}
-
-/* ================= TOP BUTTONS ================= */
+/* TOP */
 .top-icons{
     position:absolute;
     top:15px;
     right:15px;
     display:flex;
     gap:10px;
-    z-index:10;
 }
 
-/* FLAG */
-.lang-btn{
+/* BUTTONS */
+.lang-btn, .theme-btn{
     width:40px;
     height:40px;
     border-radius:50%;
-    overflow:hidden;
-    border:2px solid #fff;
-    cursor:pointer;
-}
-
-.lang-btn img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-/* DARK MODE BUTTON */
-.theme-btn{
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    background:rgba(0,0,0,0.5);
     display:flex;
     justify-content:center;
     align-items:center;
     cursor:pointer;
 }
 
+.lang-btn img{
+    width:100%;
+    border-radius:50%;
+}
+
+.theme-btn{
+    background:rgba(0,0,0,0.5);
+}
+
 .theme-btn i{
     color:#fff;
 }
 
-/* ================= SEARCH ================= */
+/* SEARCH */
 .search-box{
     padding:15px;
 }
@@ -115,10 +83,9 @@ body.dark::before{
     padding:14px;
     border-radius:12px;
     border:none;
-    outline:none;
 }
 
-/* ================= PRODUCTS ================= */
+/* PRODUCTS */
 .container{
     padding:15px;
 }
@@ -147,7 +114,6 @@ body.dark::before{
 
 .price{
     color:#ffd700;
-    font-weight:bold;
 }
 
 .btn{
@@ -156,10 +122,9 @@ body.dark::before{
     padding:6px 10px;
     border-radius:8px;
     cursor:pointer;
-    font-weight:bold;
 }
 
-/* ================= FLOATING CART ================= */
+/* CART */
 .cart-float{
     position:fixed;
     bottom:20px;
@@ -172,22 +137,13 @@ body.dark::before{
     justify-content:center;
     align-items:center;
     cursor:pointer;
-    box-shadow:0 0 15px rgba(255,215,0,0.6);
-    z-index:999;
 }
 
-.cart-float i{
-    font-size:24px;
-    color:#000;
-}
-
-/* BADGE */
 .cart-count{
     position:absolute;
     top:-5px;
     right:-5px;
     background:red;
-    color:#fff;
     width:22px;
     height:22px;
     border-radius:50%;
@@ -195,7 +151,6 @@ body.dark::before{
     display:flex;
     justify-content:center;
     align-items:center;
-    font-weight:bold;
 }
 
 /* POPUP */
@@ -212,8 +167,8 @@ body.dark::before{
     background:#fff;
     color:#000;
     padding:20px;
-    width:85%;
-    border-radius:14px;
+    width:90%;
+    border-radius:12px;
 }
 </style>
 </head>
@@ -222,19 +177,14 @@ body.dark::before{
 
 <!-- HEADER -->
 <div class="header">
-    <div class="header-img">
-        <img src="img/Gemini_Generated_Image_u88131u88131u881.png">
-    </div>
 
-    <!-- TOP ICONS -->
     <div class="top-icons">
 
-        <!-- DARK MODE -->
+        <!-- DAY NIGHT BUTTON FIX -->
         <div class="theme-btn" onclick="toggleTheme()">
-            <i class="fas fa-moon" id="moon"></i>
+            <i id="themeIcon" class="fas fa-moon"></i>
         </div>
 
-        <!-- FLAG -->
         <div class="lang-btn">
             <img src="img/azerbaycan.jpg">
         </div>
@@ -256,20 +206,31 @@ body.dark::before{
     <div class="cart-count" id="cartCount">0</div>
 </div>
 
-<!-- POPUP -->
+<!-- POPUP CART -->
 <div class="popup" id="popup">
     <div class="popup-box">
-        <h2 id="pname"></h2>
-        <p id="pdesc"></p>
-        <button onclick="closeInfo()">Bağla</button>
+        <h2>Səbət</h2>
+        <div id="cartItems"></div>
+        <h3 id="totalPrice"></h3>
+
+        <a id="whatsappBtn" target="_blank">
+            <button style="margin-top:10px;background:green;color:#fff;padding:10px;border:none;border-radius:8px;">
+                WhatsApp ilə sifariş et
+            </button>
+        </a>
+
+        <button onclick="closeCart()" style="margin-top:10px;background:red;color:#fff;padding:8px;border:none;border-radius:8px;">
+            Bağla
+        </button>
     </div>
 </div>
 
 <script>
 
-let cart=0;
+let cart=[];
+let total=0;
 
-/* PRODUCTS 50 */
+/* PRODUCTS */
 let products=[];
 for(let i=1;i<=50;i++){
     products.push({
@@ -283,38 +244,47 @@ function render(){
     let box=document.getElementById("productList");
     box.innerHTML="";
 
-    products.forEach(p=>{
+    products.forEach((p,i)=>{
         box.innerHTML+=`
-        <div class="product" onclick="showInfo('${p.name}','Nərd haqqında məlumat')">
+        <div class="product">
             <img src="https://via.placeholder.com/55">
             <div class="name">${p.name}</div>
             <div class="price">${p.price}₼</div>
-            <button class="btn" onclick="addCart(event)">Səbət</button>
+            <button class="btn" onclick="addCart(${i})">Səbət</button>
         </div>
         `;
     });
 }
 render();
 
-/* CART */
-function addCart(e){
-    e.stopPropagation();
-    cart++;
-    document.getElementById("cartCount").innerText=cart;
+/* ADD CART */
+function addCart(i){
+    cart.push(products[i]);
+    document.getElementById("cartCount").innerText=cart.length;
 }
 
+/* OPEN CART */
 function openCart(){
-    alert("Səbətdə: "+cart+" məhsul var");
-}
+    let html="";
+    total=0;
 
-/* POPUP */
-function showInfo(name,desc){
-    document.getElementById("pname").innerText=name;
-    document.getElementById("pdesc").innerText=desc;
+    cart.forEach(item=>{
+        html+=`<p>${item.name} - ${item.price}₼</p>`;
+        total+=item.price;
+    });
+
+    document.getElementById("cartItems").innerHTML=html;
+    document.getElementById("totalPrice").innerText="Ümumi: "+total+"₼";
+
+    let msg=cart.map(i=>`${i.name} - ${i.price}₼`).join("%0A");
+
+    document.getElementById("whatsappBtn").href=
+    "https://wa.me/994000000000?text=Sifariş:%0A"+msg+"%0AÜmumi:"+total+"₼";
+
     document.getElementById("popup").style.display="flex";
 }
 
-function closeInfo(){
+function closeCart(){
     document.getElementById("popup").style.display="none";
 }
 
@@ -327,9 +297,19 @@ document.getElementById("search").addEventListener("input",function(){
     });
 });
 
-/* DARK MODE */
+/* DAY NIGHT FIX ICON */
 function toggleTheme(){
     document.body.classList.toggle("dark");
+
+    let icon=document.getElementById("themeIcon");
+
+    if(document.body.classList.contains("dark")){
+        icon.classList.remove("fa-moon");
+        icon.classList.add("fa-sun");
+    }else{
+        icon.classList.remove("fa-sun");
+        icon.classList.add("fa-moon");
+    }
 }
 
 </script>
