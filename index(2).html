@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nard Home - Məhsullar</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial;
+}
+
+/* BODY BACKGROUND */
+body{
+    background:url("img/WhatsApp Image 2026-04-12 at 19.58.20.jpeg") center/cover no-repeat fixed;
+    color:#fff;
+}
+
+/* DARK OVERLAY */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.35);
+    z-index:-1;
+}
+
+body.dark::before{
+    background:rgba(0,0,0,0.65);
+}
+
+/* HEADER */
+.header{
+    height:170px;
+    position:relative;
+    overflow:hidden;
+    border-bottom-left-radius:60px;
+    border-bottom-right-radius:60px;
+}
+
+/* 🟡 HEADER IMAGE AREA */
+.header-img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+}
+
+/* UPLOADED IMAGE */
+.header-img img{
+    width:100%;
+    height:100%;
+    object-fit:cover; /* ONLY YELLOW AREA FILL */
+}
+
+/* DARK OVERLAY ON HEADER */
+.header::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.2);
+}
+
+/* TOP BUTTONS */
+.lang-btn{
+    position:absolute;
+    top:15px;
+    right:15px;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    overflow:hidden;
+    border:2px solid #fff;
+    z-index:5;
+}
+
+.lang-btn img{
+    width:100%;
+    height:100%;
+}
+
+.theme-toggle{
+    position:absolute;
+    top:15px;
+    right:70px;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:rgba(0,0,0,0.35);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    z-index:6;
+}
+
+.theme-toggle i{
+    color:#fff;
+    font-size:18px;
+}
+
+#sun{display:none;}
+body.light #sun{display:block;}
+body.light #moon{display:none;}
+body.dark #moon{display:block;}
+body.dark #sun{display:none;}
+
+/* SEARCH */
+.search-box{
+    padding:15px;
+}
+
+.search-box input{
+    width:100%;
+    padding:14px;
+    border-radius:14px;
+    border:none;
+    outline:none;
+    font-size:16px;
+    background:rgba(255,255,255,0.15);
+    color:#fff;
+}
+
+/* PRODUCTS */
+.container{
+    padding:15px;
+}
+
+.product{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.2);
+    margin-bottom:12px;
+    padding:12px;
+    border-radius:14px;
+}
+
+.product img{
+    width:60px;
+    height:60px;
+    border-radius:10px;
+    object-fit:cover;
+}
+
+.name{
+    flex:1;
+    text-align:center;
+    font-weight:bold;
+}
+
+.price{
+    color:#ffd700;
+    font-weight:bold;
+    margin-right:10px;
+}
+
+.btn{
+    background:#ffd700;
+    border:none;
+    padding:7px 10px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* POPUP */
+.popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.85);
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
+
+.popup-box{
+    background:#fff;
+    color:#000;
+    padding:20px;
+    width:85%;
+    border-radius:14px;
+}
+
+.close{
+    margin-top:10px;
+    background:red;
+    color:#fff;
+    padding:8px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body class="light">
+
+<!-- HEADER IMAGE UPLOAD AREA -->
+<div class="header">
+
+    <div class="header-img">
+        <!-- 🔥 BURAYA ŞƏKİL QOYURSAN -->
+        <img id="headerImage" src="img/background.jpg">
+    </div>
+
+    <!-- DARK MODE -->
+    <div class="theme-toggle" id="toggle">
+        <i class="fas fa-moon" id="moon"></i>
+        <i class="fas fa-sun" id="sun"></i>
+    </div>
+
+    <!-- FLAG -->
+    <div class="lang-btn">
+        <img src="img/azerbaycan.jpg">
+    </div>
+
+</div>
+
+<!-- SEARCH -->
+<div class="search-box">
+    <input type="text" id="search" placeholder="Məhsul axtar...">
+</div>
+
+<!-- PRODUCTS -->
+<div class="container">
+
+    <div class="product">
+        <img src="https://via.placeholder.com/60">
+        <div class="name">Nərd Premium</div>
+        <div class="price">25₼</div>
+        <button class="btn" onclick="openInfo()">Hakkında</button>
+    </div>
+
+    <div class="product">
+        <img src="https://via.placeholder.com/60">
+        <div class="name">Nərd Klassik</div>
+        <div class="price">18₼</div>
+        <button class="btn" onclick="openInfo()">Hakkında</button>
+    </div>
+
+</div>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+    <div class="popup-box">
+        <h2>Nərd haqqında</h2>
+        <p>
+            Nərd qədim strateji oyundur və premium əl işidir.
+        </p>
+        <button class="close" onclick="closeInfo()">Bağla</button>
+    </div>
+</div>
+
+<script>
+
+/* DARK MODE */
+const toggle=document.getElementById("toggle");
+
+toggle.onclick=()=>{
+    document.body.classList.toggle("dark");
+    document.body.classList.toggle("light");
+};
+
+/* POPUP */
+function openInfo(){
+    document.getElementById("popup").style.display="flex";
+}
+
+function closeInfo(){
+    document.getElementById("popup").style.display="none";
+};
+
+/* SEARCH */
+document.getElementById("search").addEventListener("input",function(){
+    let val=this.value.toLowerCase();
+    document.querySelectorAll(".product").forEach(p=>{
+        let name=p.querySelector(".name").innerText.toLowerCase();
+        p.style.display = name.includes(val) ? "flex" : "none";
+    });
+});
+</script>
+
+</body>
+</html>
