@@ -16,32 +16,46 @@
 }
 
 /* BODY */
-body{transition:.3s;}
-
-/* LIGHT MODE */
-body.light{
-    background:linear-gradient(135deg,#f5e6b3,#fff3cc,#ffe08a);
-    color:#222;
+body{
+    transition:.4s;
+    position:relative;
+    overflow-x:hidden;
 }
 
-/* DARK MODE */
-body.dark{
-    background:linear-gradient(135deg,#3b2a00,#5a3d00,#7a5200,#a87400);
-    color:#fff;
+/* SABIT ARXA PLAN */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:url("f:\Gemini_Generated_Image_w9ny57w9ny57w9ny.jpg") center/cover no-repeat;
+    z-index:-2;
+}
+
+/* GECE / GÜNDÜZ DARK EFFECT */
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0);
+    transition:.4s;
+    z-index:-1;
+    pointer-events:none;
+}
+
+body.dark::after{
+    background:rgba(0,0,0,0.55);
 }
 
 /* HEADER */
 .header{
-    height:120px;
+    height:150px;
+    position:relative;
     border-bottom-left-radius:60% 35px;
     border-bottom-right-radius:70% 35px;
-    position:relative;
+    background:rgba(255,204,0,0.95);
 }
 
-body.light .header{background:#ffcc00;}
-body.dark .header{background:linear-gradient(135deg,#c89b00,#ffcc00);}
-
-/* THEME */
+/* THEME BUTTON */
 .theme-toggle{
     position:absolute;
     top:15px;
@@ -56,7 +70,11 @@ body.dark .header{background:linear-gradient(135deg,#c89b00,#ffcc00);}
     cursor:pointer;
 }
 
-.theme-toggle i{position:absolute;color:#fff;font-size:18px;}
+.theme-toggle i{
+    position:absolute;
+    color:#fff;
+    font-size:18px;
+}
 
 #sun{display:none;}
 body.light #sun{display:block;}
@@ -84,56 +102,75 @@ body.dark #sun{display:none;}
 
 /* LOGO */
 .logo{
-    width:110px;
-    height:110px;
+    width:105px;
+    height:105px;
     border-radius:50%;
     position:absolute;
     left:50%;
-    top:45px;
+    top:25px;
     transform:translateX(-50%);
     overflow:hidden;
-    box-shadow:0 10px 25px rgba(0,0,0,0.5);
+    border:3px solid #fff;
+    background:#fff;
 }
 
 .logo img{
-    width:110%;
-    height:110%;
+    width:100%;
+    height:100%;
     object-fit:cover;
 }
 
 /* TITLE */
 .title{
     text-align:center;
-    margin-top:75px;
+    margin-top:70px;
 }
 
 .title h1{
-    font-size:26px;
-    letter-spacing:2px;
+    font-size:30px;
+    color:#ffd700;
+    text-shadow:0 0 10px #ffcc00, 0 0 25px #ff9900;
 }
 
-/* ⭐ STARS */
-.stars-container{
-    display:flex;
-    justify-content:center;
-    margin-top:15px;
-}
-
+/* ⭐ ULDUZLAR (BÖYÜK + ANİMASİYA) */
 .stars{
     display:flex;
-    gap:12px;
+    justify-content:center;
+    gap:10px;
+    margin-top:10px;
 }
 
 .star{
-    font-size:52px;
+    font-size:60px;
     color:#ffd700;
-    text-shadow:0 0 10px #ffcc00, 0 0 25px #ff9900;
-    animation:glow 1.2s infinite alternate;
+    text-shadow:
+        0 0 10px #ffcc00,
+        0 0 25px #ff9900,
+        0 0 40px #ffcc00;
+
+    animation:starAnim 1.2s infinite ease-in-out;
 }
 
-@keyframes glow{
-    0%{transform:scale(0.9); opacity:0.6;}
-    100%{transform:scale(1.2); opacity:1;}
+/* fərqli gecikmə */
+.star:nth-child(1){animation-delay:0s;}
+.star:nth-child(2){animation-delay:0.1s;}
+.star:nth-child(3){animation-delay:0.2s;}
+.star:nth-child(4){animation-delay:0.3s;}
+.star:nth-child(5){animation-delay:0.4s;}
+
+@keyframes starAnim{
+    0%{
+        transform:scale(0.7) rotate(-5deg);
+        opacity:0.5;
+    }
+    50%{
+        transform:scale(1.3) rotate(5deg);
+        opacity:1;
+    }
+    100%{
+        transform:scale(0.9) rotate(0deg);
+        opacity:0.8;
+    }
 }
 
 /* CONTENT */
@@ -143,7 +180,7 @@ body.dark #sun{display:none;}
     margin-top:30px;
 }
 
-/* MENU */
+/* MENU CARD */
 .menu-card{
     max-width:360px;
     margin:20px auto;
@@ -154,10 +191,9 @@ body.dark #sun{display:none;}
     font-weight:bold;
     cursor:pointer;
     animation:pulse 1.5s infinite;
+    background:#ffcc00;
+    color:#000;
 }
-
-body.dark .menu-card{background:#ffcc00;color:#000;}
-body.light .menu-card{background:#b8860b;color:#fff;}
 
 @keyframes pulse{
     0%{transform:scale(1)}
@@ -165,92 +201,42 @@ body.light .menu-card{background:#b8860b;color:#fff;}
     100%{transform:scale(1)}
 }
 
+/* INFO */
 .info-box{
     max-width:360px;
     margin:15px auto;
     padding:15px;
     border-radius:12px;
+    background:rgba(0,0,0,0.05);
 }
 
-body.dark .info-box{background:rgba(255,204,0,0.15);}
-body.light .info-box{background:rgba(0,0,0,0.05);}
-
-/* 🔥 MAIN SECTION */
-.nerd-info{
-    max-width:560px;
+/* FOOTER BOX */
+.footer-box{
+    max-width:380px;
     margin:25px auto;
-    padding:70px 25px;
-    border-radius:15px;
-    position:relative;
-    overflow:hidden;
+    padding:18px;
+    border-radius:16px;
+    border:2px solid #ffd700;
+    background:rgba(0,0,0,0.35);
+    text-align:center;
 }
 
-/* IMAGES CONTAINER */
-.bg-images{
-    position:absolute;
-    inset:0;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:0 5px;
-    z-index:1;
-}
-
-/* 🔥 ANIMATION ADDED HERE */
-.bg-images img{
-    width:55%;
-    height:100%;
-    object-fit:contain;
-    object-position:center;
-    opacity:0.28;
-
-    /* ANIMATION START STATE */
-    transform:scale(0.3) translateY(40px);
-    opacity:0;
-
-    animation:imgEnter 0.8s ease forwards;
-}
-
-/* delay */
-.bg-images img:nth-child(1){animation-delay:0.2s;}
-.bg-images img:nth-child(2){animation-delay:0.4s;}
-
-@keyframes imgEnter{
-    0%{
-        opacity:0;
-        transform:scale(0.3) translateY(40px);
-    }
-    70%{
-        opacity:1;
-        transform:scale(1.1) translateY(0);
-    }
-    100%{
-        opacity:0.28;
-        transform:scale(1) translateY(0);
-    }
-}
-
-/* TEXT ON TOP */
-.nerd-info h2,
-.nerd-info p{
-    position:relative;
-    z-index:2;
+.footer-box p{
+    color:#ffd700;
+    font-weight:bold;
 }
 
 /* FOOTER */
 .footer{
     text-align:center;
-    margin-top:20px;
+    margin-top:10px;
 }
 
 .social-btn{
     font-size:28px;
     margin:0 10px;
+    color:#ffd700;
 }
-
-body.dark .social-btn{color:#ffcc00;}
-body.light .social-btn{color:#b8860b;}
-
 </style>
 </head>
 
@@ -267,56 +253,43 @@ body.light .social-btn{color:#b8860b;}
         <img src="img/azerbaycan.jpg">
     </div>
 
-</div>
+    <div class="logo">
+        <img src="img/logo.png">
+    </div>
 
-<div class="logo">
-    <img src="img/Ekran görüntüsü 2026-04-12 174558.png">
 </div>
 
 <div class="title">
-    <h1>♟️ NARD HOME</h1>
+    <h1>NARD HOME</h1>
 
-    <div class="stars-container">
-        <div class="stars">
-            <span class="star">★</span>
-            <span class="star">★</span>
-            <span class="star">★</span>
-            <span class="star">★</span>
-            <span class="star">★</span>
-        </div>
+    <!-- ULDUZLAR -->
+    <div class="stars">
+        <span class="star">★</span>
+        <span class="star">★</span>
+        <span class="star">★</span>
+        <span class="star">★</span>
+        <span class="star">★</span>
     </div>
-
 </div>
 
 <div class="content">
 
-<div class="menu-card" onclick="window.location.href='menu.html'">
-    <span>📖 Məhsullara bax</span><span>›</span>
+<div class="menu-card">
+📖 Məhsullara bax ›
 </div>
 
-<div class="info-box">
-🕒 Hər gün: 10:00 – 23:00
+
 </div>
 
-<div class="nerd-info">
-
-    <div class="bg-images">
-        <img src="img/national-symbols-azerbaijani-people-buta-600nw-2040684467__1_-removebg-preview.png">
-        <img src="img/national-symbols-azerbaijani-people-buta-600nw-2040684467__1_-removebg-preview1.png">
-    </div>
-
-    <h2>🎲 Nərd Haqqında</h2>
-    <p>Nərd min illərdir oynanan strateji oyundur.</p>
-
+<div class="footer-box">
+    <p>📍 BAKI</p>
+    <p>⏰ AÇILIŞ: 10:00</p>
+    <p>⛔ BAĞLANIŞ: 23:00</p>
 </div>
 
 <div class="footer">
-📍 Bakı
-<br><br>
-<a href="#"><i class="fab fa-instagram social-btn"></i></a>
-<a href="#"><i class="fab fa-whatsapp social-btn"></i></a>
-</div>
-
+    <a href="#"><i class="fab fa-instagram social-btn"></i></a>
+    <a href="#"><i class="fab fa-whatsapp social-btn"></i></a>
 </div>
 
 <script>
