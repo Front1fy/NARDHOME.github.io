@@ -185,7 +185,7 @@ body.light .info-box{background:rgba(0,0,0,0.05);}
     overflow:hidden;
 }
 
-/* IMAGES CONTAINER */
+/* IMAGES */
 .bg-images{
     position:absolute;
     inset:0;
@@ -196,22 +196,22 @@ body.light .info-box{background:rgba(0,0,0,0.05);}
     z-index:1;
 }
 
-/* 🔥 ANIMATION ADDED HERE */
+/* INITIAL STATE */
 .bg-images img{
     width:55%;
     height:100%;
     object-fit:contain;
     object-position:center;
-    opacity:0.28;
 
-    /* ANIMATION START STATE */
-    transform:scale(0.3) translateY(40px);
     opacity:0;
+    transform:scale(0.3) translateY(40px);
+}
 
+/* ANIMATION CLASS */
+.bg-images img.show{
     animation:imgEnter 0.8s ease forwards;
 }
 
-/* delay */
 .bg-images img:nth-child(1){animation-delay:0.2s;}
 .bg-images img:nth-child(2){animation-delay:0.4s;}
 
@@ -230,7 +230,7 @@ body.light .info-box{background:rgba(0,0,0,0.05);}
     }
 }
 
-/* TEXT ON TOP */
+/* TEXT */
 .nerd-info h2,
 .nerd-info p{
     position:relative;
@@ -322,6 +322,7 @@ body.light .social-btn{color:#b8860b;}
 <script>
 const toggle=document.getElementById("toggle");
 
+/* theme */
 if(localStorage.getItem("theme")==="dark"){
     document.body.classList.add("dark");
 }else{
@@ -336,6 +337,24 @@ toggle.onclick=()=>{
         document.body.classList.contains("dark") ? "dark" : "light"
     );
 };
+
+/* 🔥 SCROLL ANIMATION REPEAT */
+const images = document.querySelectorAll(".bg-images img");
+
+function animate(){
+    images.forEach(img=>{
+        const rect = img.getBoundingClientRect();
+
+        if(rect.top < window.innerHeight - 100){
+            img.classList.add("show");
+        }else{
+            img.classList.remove("show");
+        }
+    });
+}
+
+window.addEventListener("scroll", animate);
+window.addEventListener("load", animate);
 </script>
 
 </body>
