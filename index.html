@@ -41,7 +41,7 @@ body.dark{
 body.light .header{background:#ffcc00;}
 body.dark .header{background:linear-gradient(135deg,#c89b00,#ffcc00);}
 
-/* THEME BUTTON */
+/* THEME */
 .theme-toggle{
     position:absolute;
     top:15px;
@@ -56,11 +56,7 @@ body.dark .header{background:linear-gradient(135deg,#c89b00,#ffcc00);}
     cursor:pointer;
 }
 
-.theme-toggle i{
-    position:absolute;
-    color:#fff;
-    font-size:18px;
-}
+.theme-toggle i{position:absolute;color:#fff;font-size:18px;}
 
 #sun{display:none;}
 body.light #sun{display:block;}
@@ -80,6 +76,12 @@ body.dark #sun{display:none;}
     border:2px solid #fff;
 }
 
+.lang-btn img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
 /* LOGO */
 .logo{
     width:110px;
@@ -92,9 +94,6 @@ body.dark #sun{display:none;}
     overflow:hidden;
     box-shadow:0 10px 25px rgba(0,0,0,0.5);
 }
-
-body.dark .logo{background:#000;}
-body.light .logo{background:#fff;}
 
 .logo img{
     width:110%;
@@ -113,34 +112,24 @@ body.light .logo{background:#fff;}
     letter-spacing:2px;
 }
 
-/* ⭐ ULDUZLAR - TAM SƏRFƏR */
+/* ⭐ STARS */
 .stars-container{
     display:flex;
     justify-content:center;
     margin-top:15px;
 }
 
-/* ❌ HEÇ BİR FON YOXDUR */
 .stars{
-    background:none;
-    padding:0;
-    margin:0;
     display:flex;
     gap:12px;
 }
 
-/* ⭐ BÖYÜK ULDUZLAR */
 .star{
     font-size:52px;
     color:#ffd700;
     text-shadow:0 0 10px #ffcc00, 0 0 25px #ff9900;
     animation:glow 1.2s infinite alternate;
 }
-
-.star:nth-child(2){animation-delay:.1s;}
-.star:nth-child(3){animation-delay:.2s;}
-.star:nth-child(4){animation-delay:.3s;}
-.star:nth-child(5){animation-delay:.4s;}
 
 @keyframes glow{
     0%{transform:scale(0.9); opacity:0.6;}
@@ -154,6 +143,7 @@ body.light .logo{background:#fff;}
     margin-top:30px;
 }
 
+/* MENU */
 .menu-card{
     max-width:360px;
     margin:20px auto;
@@ -185,16 +175,45 @@ body.light .menu-card{background:#b8860b;color:#fff;}
 body.dark .info-box{background:rgba(255,204,0,0.15);}
 body.light .info-box{background:rgba(0,0,0,0.05);}
 
+/* 🔥 MAIN SECTION */
 .nerd-info{
-    max-width:360px;
+    max-width:560px;
     margin:25px auto;
-    padding:20px;
+    padding:70px 25px;
     border-radius:15px;
+    position:relative;
+    overflow:hidden;
 }
 
-body.dark .nerd-info{background:rgba(0,0,0,0.5);}
-body.light .nerd-info{background:#fff3cc;}
+/* 🔥 BIG FULL IMAGE (NO CUTTING) */
+.bg-images{
+    position:absolute;
+    inset:0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 5px;
+    z-index:1;
+}
 
+.bg-images img{
+    width:55%;     /* 🔥 DAHA BÖYÜK */
+    height:100%;
+
+    object-fit:contain; /* ❗ 0% KƏSİLMƏ */
+    object-position:center;
+
+    opacity:0.28;
+}
+
+/* TEXT ON TOP */
+.nerd-info h2,
+.nerd-info p{
+    position:relative;
+    z-index:2;
+}
+
+/* FOOTER */
 .footer{
     text-align:center;
     margin-top:20px;
@@ -221,7 +240,7 @@ body.light .social-btn{color:#b8860b;}
     </div>
 
     <div class="lang-btn">
-        <img src="img/pngtree-azerbaijan-flag-3d-sphere-png-image_16177664.png">
+        <img src="f:/pngtree-azerbaijan-flag-3d-sphere-png-image_16177664.png">
     </div>
 
 </div>
@@ -256,8 +275,15 @@ body.light .social-btn{color:#b8860b;}
 </div>
 
 <div class="nerd-info">
-<h2>🎲 Nərd Haqqında</h2>
-<p>Nərd min illərdir oynanan strateji oyundur.</p>
+
+    <div class="bg-images">
+        <img src="f:/national-symbols-azerbaijani-people-buta-600nw-2040684467__1_-removebg-preview.png">
+        <img src="f:\national-symbols-azerbaijani-people-buta-600nw-2040684467__1_-removebg-preview1.png">
+    </div>
+
+    <h2>🎲 Nərd Haqqında</h2>
+    <p>Nərd min illərdir oynanan strateji oyundur.</p>
+
 </div>
 
 <div class="footer">
