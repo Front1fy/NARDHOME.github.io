@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>nerd_home</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+/* BODY */
+body{transition:.3s;}
+
+/* LIGHT MODE */
+body.light{
+    background:linear-gradient(135deg,#f5e6b3,#fff3cc,#ffe08a);
+    color:#222;
+}
+
+/* DARK MODE */
+body.dark{
+    background:linear-gradient(135deg,#3b2a00,#5a3d00,#7a5200,#a87400);
+    color:#fff;
+}
+
+/* HEADER */
+.header{
+    height:120px;
+    border-bottom-left-radius:60% 35px;
+    border-bottom-right-radius:70% 35px;
+    position:relative;
+}
+
+body.light .header{background:#ffcc00;}
+body.dark .header{background:linear-gradient(135deg,#c89b00,#ffcc00);}
+
+/* THEME BUTTON */
+.theme-toggle{
+    position:absolute;
+    top:15px;
+    left:15px;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:rgba(0,0,0,0.25);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+}
+
+.theme-toggle i{
+    position:absolute;
+    color:#fff;
+    font-size:18px;
+}
+
+#sun{display:none;}
+body.light #sun{display:block;}
+body.light #moon{display:none;}
+body.dark #moon{display:block;}
+body.dark #sun{display:none;}
+
+/* FLAG */
+.lang-btn{
+    position:absolute;
+    top:15px;
+    right:15px;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    overflow:hidden;
+    border:2px solid #fff;
+}
+
+/* LOGO */
+.logo{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    position:absolute;
+    left:50%;
+    top:45px;
+    transform:translateX(-50%);
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,0.5);
+}
+
+body.dark .logo{background:#000;}
+body.light .logo{background:#fff;}
+
+.logo img{
+    width:110%;
+    height:110%;
+    object-fit:cover;
+}
+
+/* TITLE */
+.title{
+    text-align:center;
+    margin-top:75px;
+}
+
+.title h1{
+    font-size:26px;
+    letter-spacing:2px;
+}
+
+/* ⭐ ULDUZLAR - TAM SƏRFƏR */
+.stars-container{
+    display:flex;
+    justify-content:center;
+    margin-top:15px;
+}
+
+/* ❌ HEÇ BİR FON YOXDUR */
+.stars{
+    background:none;
+    padding:0;
+    margin:0;
+    display:flex;
+    gap:12px;
+}
+
+/* ⭐ BÖYÜK ULDUZLAR */
+.star{
+    font-size:52px;
+    color:#ffd700;
+    text-shadow:0 0 10px #ffcc00, 0 0 25px #ff9900;
+    animation:glow 1.2s infinite alternate;
+}
+
+.star:nth-child(2){animation-delay:.1s;}
+.star:nth-child(3){animation-delay:.2s;}
+.star:nth-child(4){animation-delay:.3s;}
+.star:nth-child(5){animation-delay:.4s;}
+
+@keyframes glow{
+    0%{transform:scale(0.9); opacity:0.6;}
+    100%{transform:scale(1.2); opacity:1;}
+}
+
+/* CONTENT */
+.content{
+    text-align:center;
+    padding:15px;
+    margin-top:30px;
+}
+
+.menu-card{
+    max-width:360px;
+    margin:20px auto;
+    padding:18px;
+    border-radius:12px;
+    display:flex;
+    justify-content:space-between;
+    font-weight:bold;
+    cursor:pointer;
+    animation:pulse 1.5s infinite;
+}
+
+body.dark .menu-card{background:#ffcc00;color:#000;}
+body.light .menu-card{background:#b8860b;color:#fff;}
+
+@keyframes pulse{
+    0%{transform:scale(1)}
+    50%{transform:scale(1.05)}
+    100%{transform:scale(1)}
+}
+
+.info-box{
+    max-width:360px;
+    margin:15px auto;
+    padding:15px;
+    border-radius:12px;
+}
+
+body.dark .info-box{background:rgba(255,204,0,0.15);}
+body.light .info-box{background:rgba(0,0,0,0.05);}
+
+.nerd-info{
+    max-width:360px;
+    margin:25px auto;
+    padding:20px;
+    border-radius:15px;
+}
+
+body.dark .nerd-info{background:rgba(0,0,0,0.5);}
+body.light .nerd-info{background:#fff3cc;}
+
+.footer{
+    text-align:center;
+    margin-top:20px;
+}
+
+.social-btn{
+    font-size:28px;
+    margin:0 10px;
+}
+
+body.dark .social-btn{color:#ffcc00;}
+body.light .social-btn{color:#b8860b;}
+
+</style>
+</head>
+
+<body class="dark">
+
+<div class="header">
+
+    <div class="theme-toggle" id="toggle">
+        <i class="fas fa-moon" id="moon"></i>
+        <i class="fas fa-sun" id="sun"></i>
+    </div>
+
+    <div class="lang-btn">
+        <img src="img/azerbaijan.png">
+    </div>
+
+</div>
+
+<div class="logo">
+    <img src="img/logo.jpg">
+</div>
+
+<div class="title">
+    <h1>♟️ NARD HOME</h1>
+
+    <div class="stars-container">
+        <div class="stars">
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+        </div>
+    </div>
+
+</div>
+
+<div class="content">
+
+<div class="menu-card" onclick="window.location.href='menu.html'">
+    <span>📖 Məhsullara bax</span><span>›</span>
+</div>
+
+<div class="info-box">
+🕒 Hər gün: 10:00 – 23:00
+</div>
+
+<div class="nerd-info">
+<h2>🎲 Nərd Haqqında</h2>
+<p>Nərd min illərdir oynanan strateji oyundur.</p>
+</div>
+
+<div class="footer">
+📍 Bakı
+<br><br>
+<a href="#"><i class="fab fa-instagram social-btn"></i></a>
+<a href="#"><i class="fab fa-whatsapp social-btn"></i></a>
+</div>
+
+</div>
+
+<script>
+const toggle=document.getElementById("toggle");
+
+if(localStorage.getItem("theme")==="dark"){
+    document.body.classList.add("dark");
+}else{
+    document.body.classList.add("light");
+}
+
+toggle.onclick=()=>{
+    document.body.classList.toggle("dark");
+    document.body.classList.toggle("light");
+
+    localStorage.setItem("theme",
+        document.body.classList.contains("dark") ? "dark" : "light"
+    );
+};
+</script>
+
+</body>
+</html>
