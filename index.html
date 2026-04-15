@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="az">
 <head>
@@ -51,69 +52,22 @@ body.dark::after{
     position:relative;
     border-bottom-left-radius:60% 35px;
     border-bottom-right-radius:70% 35px;
-
-    background:linear-gradient(90deg,#ffd000,#ffb300,#ffd000);
-
-    box-shadow:
-        0 0 10px #ffd000,
-        0 0 25px #ffb300;
-
     overflow:hidden;
 }
 
-/* NERD IMAGES */
-.header .nerd-left,
-.header .nerd-right{
+/* HEADER IMAGE (YENİ) */
+.header-image{
     position:absolute;
-    top:-10px;
-    width:200px;
-    height:200px;
-    overflow:hidden;
-    z-index:2;
-    pointer-events:none;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:1;
 }
 
-.header .nerd-left{
-    left:-30px;
-    transform:rotate(-45deg);
-    animation:dropLeft 0.8s ease-out;
-}
-
-.header .nerd-right{
-    right:-30px;
-    transform:rotate(45deg);
-    animation:dropRight 0.8s ease-out;
-    animation-delay:0.2s;
-}
-
-.header .nerd-left img,
-.header .nerd-right img{
-    width:220%;
-    height:220%;
+.header-image img{
+    width:100%;
+    height:100%;
     object-fit:cover;
-}
-
-/* ANIMATION */
-@keyframes dropLeft{
-    0%{
-        transform:translateY(-200px) rotate(-45deg);
-        opacity:0;
-    }
-    100%{
-        transform:translateY(0) rotate(-45deg);
-        opacity:1;
-    }
-}
-
-@keyframes dropRight{
-    0%{
-        transform:translateY(-200px) rotate(45deg);
-        opacity:0;
-    }
-    100%{
-        transform:translateY(0) rotate(45deg);
-        opacity:1;
-    }
 }
 
 /* MOVING LIGHT */
@@ -124,7 +78,6 @@ body.dark::after{
     left:-60%;
     width:60%;
     height:100%;
-
     background:linear-gradient(
         120deg,
         transparent,
@@ -133,10 +86,10 @@ body.dark::after{
         rgba(255,255,255,0.4),
         transparent
     );
-
     filter:blur(6px);
     transform:skewX(-20deg);
     animation:scan 2.8s infinite;
+    z-index:2;
 }
 
 @keyframes scan{
@@ -192,47 +145,36 @@ body.dark #sun{display:none;}
     object-fit:cover;
 }
 
-/* LOGO */
-.logo{
-    width:105px;
-    height:105px;
-    border-radius:50%;
-    position:absolute;
-    left:50%;
-    top:25px;
-    transform:translateX(-50%);
-    overflow:hidden;
-    border:3px solid #fff;
-    background:#fff;
-    z-index:5;
-}
-
-.logo img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
 /* TITLE */
 .title{
     text-align:center;
     margin-top:70px;
 }
 
-/* 🔥 NARD HOME (DAHA SARILI) */
+
+/* NARD HOME (YENİ STYLE) */
 .title h1{
-    font-size:30px;
+    display:inline-block;
+    padding:10px 25px;
 
-    /* daha parlaq sarı */
-    color:#ffea00;
+    background:#ffd000; /* sarı fon */
+    color:#000; /* qara yazı */
 
-    -webkit-text-stroke: 1.5px black;
+    border:3px solid #000;
+    border-radius:12px;
 
-    text-shadow:
-        0 0 8px #fff200,
-        0 0 18px #ffd000,
-        0 0 30px #ffb300;
+    font-family:'Trebuchet MS', sans-serif;
+    font-size:28px;
+    font-weight:bold;
+
+    letter-spacing:2px;
+
+    box-shadow:
+        0 0 10px #ffd000,
+        0 0 25px #ffb300;
 }
+
+
 
 /* STARS */
 .stars{
@@ -249,7 +191,6 @@ body.dark #sun{display:none;}
         0 0 10px #ffcc00,
         0 0 25px #ff9900,
         0 0 40px #ffcc00;
-
     animation:starAnim 1.2s infinite ease-in-out;
 }
 
@@ -327,12 +268,9 @@ body.dark #sun{display:none;}
 
 <div class="header">
 
-    <div class="nerd-left">
-        <img src="img/55005603-89e1-4c68-876a-52f2c4b85165_removalai_preview.png">
-    </div>
-
-    <div class="nerd-right">
-        <img src="img/f6428df7-6e56-458f-8009-726e6ecbe702_removalai_preview.png">
+    <!-- HEADER ŞƏKİL -->
+    <div class="header-image">
+        <img src="img/senin_seklin.jpg">
     </div>
 
     <div class="theme-toggle" id="toggle">
@@ -342,10 +280,6 @@ body.dark #sun{display:none;}
 
     <div class="lang-btn">
         <img src="img/azerbaycan.jpg">
-    </div>
-
-    <div class="logo">
-        <img src="img/Ekran görüntüsü 2026-04-12 174558.png">
     </div>
 
 </div>
@@ -362,15 +296,29 @@ body.dark #sun{display:none;}
     </div>
 </div>
 
+
 <div class="content">
 
 <a href="index(2).html" style="text-decoration:none;">
-<div class="menu-card">
-📖 Məhsullara bax ›
-</div>
+    <div class="menu-card">
+        📖 Məhsullara bax ›
+    </div>
+</a>
+
+<a href="#" style="text-decoration:none;">
+    <div class="menu-card">
+        💎 Premium məhsullar ›
+    </div>
+</a>
+
+<a href="#" style="text-decoration:none;">
+    <div class="menu-card">
+        🧾 Müştəri sifarişləri ›
+    </div>
 </a>
 
 </div>
+
 
 <div class="footer-box">
     <p>📍 Ünvan: Bakı, Badamdar şossesi 42, Qurd qapısı dairəsi yanı – NardHome mağazası</p>   
@@ -396,3 +344,4 @@ toggle.onclick=()=>{
 
 </body>
 </html>
+```
