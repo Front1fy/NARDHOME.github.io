@@ -276,13 +276,7 @@ body::after{
 </div>
 
 <script>
-function getCart(){
-    return JSON.parse(localStorage.getItem("cart")) || [];
-}
-
-function saveCart(cart){
-    localStorage.setItem("cart", JSON.stringify(cart));
-}
+let cart=[];
 
 function plus(btn){
     let s=btn.parentElement.querySelector("span");
@@ -295,22 +289,12 @@ function minus(btn){
 }
 
 function add(name,price,btn){
-
-    let qty = Number(btn.parentElement.querySelector("span").innerText);
-
-    let cart = getCart();
-
-    cart.push({name, price, qty});
-
-    saveCart(cart);
-
-    document.getElementById("count").innerText = cart.length;
+    let qty=btn.parentElement.querySelector("span").innerText;
+    cart.push({name,price,qty});
+    document.getElementById("count").innerText=cart.length;
 }
 
 function openCart(){
-
-    let cart = getCart();
-
     let list=document.getElementById("list");
     let total=0;
     list.innerHTML="";
@@ -338,10 +322,11 @@ function openCart(){
 
     document.getElementById("modal").style.display="flex";
 }
+
 function closeCart(){
     document.getElementById("modal").style.display="none";
 }
 </script>
 
 </body>
-</html>
+</html> bax bu kod esas koddu bu ındexde mehsulları elave edecem dıger ındexlerdekı sebetlerde burdakı mehsullar gorunecek
