@@ -184,6 +184,61 @@ body.dark #sun{display:none;}
     margin:0 10px;
     color:#ffd700;
 }
+.cart-btn{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    width:65px;
+    height:65px;
+    background:#ffd000;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    cursor:pointer;
+    z-index:999;
+}
+
+#cartCount{
+    position:absolute;
+    top:5px;
+    right:10px;
+    background:red;
+    color:#fff;
+    font-size:12px;
+    padding:2px 6px;
+    border-radius:50%;
+}
+
+.cart-modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.6);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:1000;
+}
+
+.cart-box{
+    background:#fff;
+    width:90%;
+    max-width:400px;
+    padding:15px;
+    border-radius:12px;
+}
+
+.wa-btn{
+    display:block;
+    margin-top:10px;
+    background:#25D366;
+    color:#fff;
+    text-align:center;
+    padding:10px;
+    border-radius:10px;
+    text-decoration:none;
+}
 </style>
 </head>
 
@@ -248,9 +303,89 @@ body.dark #sun{display:none;}
     <a href="https://www.tiktok.com/@nard_home"><i class="fab fa-tiktok social-btn"></i></a>
     <a href="#"><i class="fab fa-whatsapp social-btn"></i></a>
 </div>
+<!-- 🛒 CART BUTTON -->
+<div class="cart-btn" onclick="openCart()">
+🛒 <span id="cartCount">0</span>
+</div>
+
+<!-- CART MODAL -->
+<div id="cartModal" class="cart-modal">
+    <div class="cart-box">
+
+        <h3>Səbət</h3>
+
+        <div id="cartItems"></div>
+
+        <h3 id="cartTotal"></h3>
+
+        <a id="whatsappBtn" class="wa-btn" target="_blank">
+            WhatsApp ilə sifariş
+        </a>
+
+        <button onclick="closeCart()">Bağla</button>
+
+    </div>
+</div>
 
 <script>
 const toggle=document.getElementById("toggle");
+function getCart(){
+    return JSON.parse(localStorage.getItem("cart")) || [];
+}
+
+function saveCart(cart){
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCart();
+}
+
+function addToCart(name,price,qty){
+    let cart = getCart();
+    cart.push({name,price,qty});
+    saveCart(cart);
+}
+
+function updateCart(){
+
+    let cart = getCart();
+
+    document.getElementById("cartCount").innerText = cart.length;
+
+    let box = document.getElementById("cartItems");
+    let total = 0;
+    box.innerHTML = "";
+
+    cart.forEach(i=>{
+        let sum = i.price * i.qty;
+        total += sum;
+
+        box.innerHTML += `
+        <div style="display:flex;justify-content:space-between;margin:5px 0">
+            <span>${i.name} x${i.qty}</span>
+            <span>${sum}₼</span>
+        </div>`;
+    });
+
+    document.getElementById("cartTotal").innerText =
+        "Cəmi: " + total + "₼";
+
+    let text = "Sifariş:%0A";
+    cart.forEach(i=>{
+        text += `${i.name} x${i.qty}%0A`;
+    });
+
+    document.getElementById("whatsappBtn").href =
+    "https://wa.me/994501234567?text=" + text;
+}
+
+function openCart(){
+    document.getElementById("cartModal").style.display="flex";
+}
+
+function closeCart(){
+    document.getElementById("cartModal").style.display="none";
+}
+
+updateCart();
 
 toggle.onclick=()=>{
     document.body.classList.toggle("dark");
